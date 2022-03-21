@@ -30,8 +30,12 @@ ThreeJS cung cấp các thư viện tạo khung hình cơ bản, tạo khối c�
 * Tuy nhiên trong thực tế, chúng ta sẽ có các hình khối phức tạp hơn, tạo ra từ các phần mềm 3D chẳng hạn, mình gọi đó là các **Custom Geometry**, sẽ tìm hiểu sau*
 
 ### 1.2 Material - Bề mặt
-MeshStandardMaterial để khởi tạo bề mặt cơ bản, nó sẽ cung cấp các thuộc tính như màu sắc, độ trong suốt, ..v..v.
-* Thông số cấu hình [Tài liệu Material](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial)
+Mình sử dụng **MeshStandardMaterial** để khởi tạo bề mặt tiêu chuẩn, nó sẽ cung cấp các thuộc tính như màu sắc, độ trong suốt, ..v..v. (loại marterial này cần ánh sáng để có thể nhìn thấy)
+* [**MeshBasicMaterial**](https://threejs.org/docs/#api/en/materials/MeshBasicMaterial) : bề mặt cơ bản nhất, nhanh nhất vì nó bỏ qua yếu tố **ánh sáng**,
+* [**MeshStandardMaterial**](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial) : bề mặt tiêu chuẩn, cần có ánh sáng để quan sát đc
+* Thông số cấu hình và các loại material [Tài liệu Material](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial)
+
+
 * normalMap: đây là thông số cho phép bạn đưa vào texture để apply lên bề mặt.(ví dụ bề mặt lồi lõm của mặt trăng)
 **Texture** có thể là 1 file ảnh bề mặt, bạn có thể search key word **normal map** hoặc **texture**
 #### Triển khai Texture
@@ -49,7 +53,7 @@ moonMaterial.normalMap = myMoonTexture;
 
 
 ## 2. Ánh sáng
-Nếu bạn đã thực hiện việc thêm 1 mặt trăng, nhưng khi render lại chỉ thấy một màu đen thui !!! Đó là lúc bạn cần tới **Ánh sáng - light** .
+Nếu bạn đã thực hiện việc thêm 1 mặt trăng, nhưng khi render lại chỉ thấy một màu đen thui, đó là vì ví dụ đang sử dụng **MeshStandardMaterial** để tạo bề mặt !!! Đó là lúc bạn cần sử dụng đối tượng  **Ánh sáng - light** . 
 Scene đã được dựng, mặt trăng đã đc tạo nhưng khung cảnh ban đầu chưa có ánh sáng nên bạn sẽ không thể nhìn thấy vật thể bạn tạo ra. Bởi vậy bạn cần tạo 1 nguồn chiếu sáng - (giống như mặt trời hoặc đèn pin vậy) và add vào scene
 
 Triển khai **PointLight**
