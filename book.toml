@@ -4,3 +4,6 @@ language = "en"
 multilingual = false
 src = "src"
 title = "threejs-let-start"
+
+[build]
+build-dir = "./docs"
