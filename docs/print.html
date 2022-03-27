@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>threejs-let-start</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">ThreeJS Basic</li><li class="chapter-item expanded "><a href="basic/installation.html"><strong aria-hidden="true">1.</strong> Khởi động</a></li><li class="chapter-item expanded "><a href="basic/create-scene.html"><strong aria-hidden="true">2.</strong> Hoạt cảnh</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic/create-scene/scene.html"><strong aria-hidden="true">2.1.</strong> Scene</a></li><li class="chapter-item expanded "><a href="basic/create-scene/camera.html"><strong aria-hidden="true">2.2.</strong> Camera</a></li><li class="chapter-item expanded "><a href="basic/create-scene/basic-code.html"><strong aria-hidden="true">2.3.</strong> Full code</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">threejs-let-start</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="khởi-động"><a class="header" href="#khởi-động">Khởi động</a></h1>
+<p>Chúng ta sẽ bắt đầu với việc setup ThreeJS , take note lại các khái niệm cơ bản nhất</p>
+<h2 id="cài-đặt-threejs"><a class="header" href="#cài-đặt-threejs">Cài đặt ThreeJs</a></h2>
+<pre><code class="language-javascript">npm install --save three
+// Import thư viện
+import * as THREE from 'three';
+</code></pre>
+<h2 id="triển-khai"><a class="header" href="#triển-khai">Triển khai</a></h2>
+<blockquote>
+<p>ThreeJS sẽ render hoạt cảnh của nó trên canvas, bởi vậy hiệu suất đem lại sẽ cực kỳ tốt. Chúng ta có thể style css với canvas chỉ định, thường các hoạt cảnh sẽ được dùng để làm backgound cho landing page hoặc đôi khi tất cả website đều được dựng bởi canvas</p>
+</blockquote>
+<ol>
+<li>Khởi tạo 1 canvas, khởi tạo <strong>Renderer</strong> phụ trách việc render và thiết lập các thông số</li>
+</ol>
+<pre><code class="language-html">&lt;canvas class=&quot;webgl&quot;&gt;&lt;/canvas&gt;
+&lt;style&gt;
+    .webgl{
+        position: fixed;
+        top: 0;
+        left: 0;
+        outline: none;
+    }
+&lt;/style&gt;
+</code></pre>
+<p>Import thư viện threejs và cấu hình</p>
+<pre><code class="language-javascript">import * as THREE from 'three';
+// 1.Lấy đối tượng dom canvas
+const canvas = document.querySelector('canvas.webgl')
+
+// 2. Tạo đối tương renderer phụ trách viêc render
+// @canvas: canvas sẽ render
+// @alpha: chế độ nền có trong suốt hay không
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true 
+})
+// thiết lập kích thước và tỉ lệ pixel, ở đây mình dùng full window luôn
+renderer.setSize(window.innerWidth, window.innerHeight) 
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+</code></pre>
+<ol start="2">
+<li>Sau khi đã có renderer, chúng ta cần truyền vào hoạt cảnh để renderer thực hiện công việc render của nó.</li>
+</ol>
+<blockquote>
+<p>Vì bản chất của việc render ra hoạt cảnh thực chất là render rất nhiều các khung hình (tương tự như frame khi xây dựng video) nên bản chất chúng ta cần 1 function gọi đệ quy việc render để sinh ra chuyển động <em>window.requestAnimationFrame(tick)</em>
+Đó là lý dó chúng ta cần function Tick()</p>
+</blockquote>
+<pre><code class="language-javascript">const tick = () =&gt;
+{
+    // Các đoạn code điều chỉnh thông số tại đây sẽ quyết định animation
+
+
+    // 1. Sử dụng đối tượng renderer để bắt đầu render (scene, camera)
+    // 2. Gọi requestAnimationFrame chạy lại hàm tick() cho lượt render tiếp theo
+    renderer.render(scene, camera) 
+    window.requestAnimationFrame(tick)
+}
+tick()
+</code></pre>
+<ol start="3">
+<li>Vậy là phần thiết lập chính đã xong, tiếp tục với với việc tạo hoạt cảnh</li>
+</ol>
+<h2 id="reference"><a class="header" href="#reference">Reference</a></h2>
+<ul>
+<li>Chi tiết cài đặt <a href="https://threejs.org/docs/#manual/en/introduction/Installation">Link</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hoạt-cảnh"><a class="header" href="#hoạt-cảnh">Hoạt cảnh</a></h1>
+<p>Giả sử chúng ta có 1 đề bài <em>tạo cảnh 1 mặt trăng quay tròn, đc chiếu sáng ở 1 phía</em>
+Renderer sẽ yêu cầu 2 thứ:</p>
+<ul>
+<li><strong>Khung cảnh</strong>: bao gồm toàn các đối tượng bên trong (ví dụ theo đề bài: mặt trăng, tia sáng)</li>
+<li><strong>Camera</strong>: đối tượng quyết định góc nhìn được render.</li>
+</ul>
+<p>Thật thú vị khi nó tương tự như bạn đang là đạo diễn của 1 bộ phim vậy,  <strong>Khung cảnh</strong> của bạn là hiện trường với các diễn viên, mọi cảnh vật cây cối. Bạn sẽ cần 1 <strong>Camera</strong> và góc nhìn của camera ghi lại chính là kết quả cuối cùng mà mọi người thấy khi bộ phim hoàn thành. </p>
+<h2 id="triển-khai-1"><a class="header" href="#triển-khai-1">Triển khai</a></h2>
+<p>Tạo scene và camera đầu tiên (bạn sẽ vần tạo ra scene và camera trước để cung cấp cho hàm Render của Renderer ở bài trước)</p>
+<pre><code class="language-javascript">// Tạo scene
+const scene = new THREE.Scene()
+
+// Tạo camera cơ bản
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+camera.position.x = 0
+camera.position.y = 0
+camera.position.z = 2
+</code></pre>
+<h2 id="reference-1"><a class="header" href="#reference-1">Reference</a></h2>
+<p>Tìm hiểu về các thông số của Camera <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera">Link</a></p>
+<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<p>Giả sử chúng ta có 1 đề bài <em>tạo cảnh 1 mặt trăng quay tròn, đc chiếu sáng ở 1 phía</em></p>
+</blockquote>
+<h1 id="scene"><a class="header" href="#scene">Scene</a></h1>
+<p>Một scene sẽ cho phép thêm các đối tượng với function <strong>add</strong>. Bạn sẽ tạo các đối tượng, ví dụ ở đấy là 1 mặt trăng (moon), sau đó dùng <strong>scene.add(moon)</strong></p>
+<h2 id="1-Đối-tượng-mesh---mặt-trăng"><a class="header" href="#1-Đối-tượng-mesh---mặt-trăng">1. Đối tượng Mesh - Mặt trăng</a></h2>
+<ol>
+<li>Các khái niệm
+Đối tượng Mặt trăng chúng ta tạo ra trong thế giới Threejs được coi là 1 <strong>Mesh</strong>. Đây là một vật thể 3D, nó được cấu thành từ <strong>Geometry</strong> và <strong>Material</strong></li>
+</ol>
+<ul>
+<li><strong>Geometry</strong>: là khung xương của vật thể, xác định hình dạng hình học của vật thể</li>
+<li><strong>Material</strong>: là vỏ bọc, xác định bề ngoài của vật thể</li>
+</ul>
+<ol start="2">
+<li>Triển khai</li>
+</ol>
+<pre><code class="language-javascript">
+// Tạo Geometry cho mặt trăng 
+// SphereBufferGeometry tạo khối cầu
+const moonGeometry = new THREE.SphereBufferGeometry(.9, 64, 64)
+
+// Tạo Material cho mặt trăng - Thiết lập màu trắng bao phủ
+const moonMaterial = new THREE.MeshStandardMaterial()
+moonMaterial.color = new THREE.Color(0xffffff)
+
+// Mesh
+const moon = new THREE.Mesh(moonGeometry,moonMaterial)
+scene.add(moon)
+</code></pre>
+<h3 id="12-geometry---cấu-trúc-hình-học"><a class="header" href="#12-geometry---cấu-trúc-hình-học">1.2 Geometry - Cấu trúc hình học</a></h3>
+<p>ThreeJS cung cấp các thư viện tạo khung hình cơ bản, tạo khối cầu <em>(SphereBufferGeometry)</em>, khối vuông  <em>(BoxGeometry)</em>, ..v.v.</p>
+<ul>
+<li>Khối cơ bản <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry">Tài liệu các khối</a></li>
+<li>Tuy nhiên trong thực tế, chúng ta sẽ có các hình khối phức tạp hơn, tạo ra từ các phần mềm 3D chẳng hạn, mình gọi đó là các <strong>Custom Geometry</strong>, sẽ tìm hiểu sau*</li>
+</ul>
+<h3 id="12-material---bề-mặt"><a class="header" href="#12-material---bề-mặt">1.2 Material - Bề mặt</a></h3>
+<p>Mình sử dụng <strong>MeshStandardMaterial</strong> để khởi tạo bề mặt tiêu chuẩn, nó sẽ cung cấp các thuộc tính như màu sắc, độ trong suốt, ..v..v. (loại marterial này cần ánh sáng để có thể nhìn thấy)</p>
+<ul>
+<li>
+<p><a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial"><strong>MeshBasicMaterial</strong></a> : bề mặt cơ bản nhất, nhanh nhất vì nó bỏ qua yếu tố <strong>ánh sáng</strong>,</p>
+</li>
+<li>
+<p><a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial"><strong>MeshStandardMaterial</strong></a> : bề mặt tiêu chuẩn, cần có ánh sáng để quan sát đc</p>
+</li>
+<li>
+<p>Thông số cấu hình và các loại material <a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial">Tài liệu Material</a></p>
+</li>
+<li>
+<p>normalMap: đây là thông số cho phép bạn đưa vào texture để apply lên bề mặt.(ví dụ bề mặt lồi lõm của mặt trăng)
+<strong>Texture</strong> có thể là 1 file ảnh bề mặt, bạn có thể search key word <strong>normal map</strong> hoặc <strong>texture</strong></p>
+</li>
+</ul>
+<h4 id="triển-khai-texture"><a class="header" href="#triển-khai-texture">Triển khai Texture</a></h4>
+<ol>
+<li>Cung cấp file texture của bạn, có thể sử dụng <a href="https://cpetry.github.io/NormalMap-Online/">Tool normalMap Generate</a></li>
+<li>Load texture từ folder chỉ định và cầu hình normal map</li>
+</ol>
+<pre><code class="language-javascript">// Load texture với TextureLoader, quá trình này take time nên đó là lý do vì sao các web 3d hay tạo loading
+const textureLoader = new THREE.TextureLoader();
+const myMoonTexture = textureLoader.load('/textures/normalMap.png')
+
+const moonMaterial = new THREE.MeshStandardMaterial()
+moonMaterial.normalMap = myMoonTexture;
+</code></pre>
+<h2 id="2-Ánh-sáng"><a class="header" href="#2-Ánh-sáng">2. Ánh sáng</a></h2>
+<p>Nếu bạn đã thực hiện việc thêm 1 mặt trăng, nhưng khi render lại chỉ thấy một màu đen thui, đó là vì ví dụ đang sử dụng <strong>MeshStandardMaterial</strong> để tạo bề mặt !!! Đó là lúc bạn cần sử dụng đối tượng  <strong>Ánh sáng - light</strong> . 
+Scene đã được dựng, mặt trăng đã đc tạo nhưng khung cảnh ban đầu chưa có ánh sáng nên bạn sẽ không thể nhìn thấy vật thể bạn tạo ra. Bởi vậy bạn cần tạo 1 nguồn chiếu sáng - (giống như mặt trời hoặc đèn pin vậy) và add vào scene</p>
+<p>Triển khai <strong>PointLight</strong></p>
+<pre><code class="language-javascript">// Khởi tạo ánh sáng chiếu - với cấu hình màu sắc nguồn sáng, độ rộng, vị trí
+const pointLight = new THREE.PointLight(0xffffff, 0.2)
+pointLight.position.x = -1.63
+pointLight.position.y = 0.97
+pointLight.position.z = 0.7
+scene.add(pointLight)
+
+
+// Sử dụng PointLightHelper để hiện vị trí nguồn sáng phục vụ việc debug
+const lightHelper = new THREE.PointLightHelper(pointLight, .6);
+scene.add(lightHelper)
+</code></pre>
+<p><strong>PointLight</strong> chỉ là một dạng ánh sáng cơ bản mà ThreeJS cung cấp <a href="https://threejs.org/docs/#api/en/lights/PointLight">Tài liệu light</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="camera"><a class="header" href="#camera">Camera</a></h1>
+<p>Camera là đối tượng cũng cấp góc nhìn chơ Scene của bạn. Góc nhìn của camera tương tự như chiếc máy chiếu.
+ThreeJS cũng cấp 2 loại camera là </p>
+<ul>
+<li><strong>OrthographicCamera</strong> : Đây là loại camera thường dùng để chiếu hoạt cảnh 2D.</li>
+<li><strong>PerspectiveCamera</strong>: Đây là loại chính chúng ta sẽ dùng vì nó cung cấp góc nhìn như cách chúng ta nhìn qua đôi mắt thực tế. Cũng là camera phổ biến để làm việc với các hoạt cảnh 3D</li>
+</ul>
+<p>##Triển khai </p>
+<pre><code class="language-javascript">import { PerspectiveCamera } from 'three';
+
+const fov = 35; // AKA Độ rộng khung cảnh
+const aspect = container.clientWidth / container.clientHeight; // tỉ lệ container
+const near = 0.1; // khoảng tiêu cự gần nhất
+const far = 100; // khoảng tiêu cự xa nhất
+
+const camera = new PerspectiveCamera(fov, aspect, near, far);
+camera.postion.set(0, 0 ,5)
+</code></pre>
+<ul>
+<li>Thường các object khi tạo ra sẽ nằm ở vị trí x:0, y:0, z:0. Đối tượng camera mặc định cũng có vị trí như vậy, bở vậy bạn cần đăt camera lùi ra phía trước 1 khoảng để có thể quan sát đối tượng . (ví dụ: x: 0, y: 0, z: 5)</li>
+<li>Đừng quên add camera vào renderer nhé</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="full-code"><a class="header" href="#full-code">Full code</a></h1>
+<p>Tạo cảnh 1 mặt trăng quay tròn, đc chiếu sáng ở 1 phía</p>
+<p>Đoạn code dưới sẽ render 1 khung hình , không chuyển động, </p>
+<pre><code class="language-html"> &lt;div id=&quot;scene-container&quot;&gt;
+ &lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">import {
+  BoxBufferGeometry,
+  Color,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from 'three';
+
+//Container
+const container = document.querySelector('#scene-container');
+
+// Scene
+const scene = new THREE.Scene()
+
+// Camera
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+camera.position.set(0,0,2)
+
+// Geometry
+const moonGeometry = new THREE.SphereBufferGeometry(.9, 64, 64)
+
+// Materials
+const moonMaterial = new THREE.MeshStandardMaterial()
+material.color = new THREE.Color(0xffffff)
+
+// Mesh
+const sphere = new THREE.Mesh(moonGeometry,moonMaterial)
+scene.add(sphere)
+
+// Create pointLight
+const pointLight = new THREE.PointLight(0xffffff, 0.2)
+pointLight.position.set( -1.63, 0.97, 0.7 )
+pointLight.intensity = .6;
+scene.add(pointLight)
+
+// create the renderer
+const renderer = new WebGLRenderer();
+renderer.setSize(container.clientWidth, container.clientHeight); //  same size as our container element
+renderer.setPixelRatio(window.devicePixelRatio); //  scene will look good on HiDPI displays
+container.append(renderer.domElement);
+
+// Start render a frame
+renderer.render(scene, camera);
+</code></pre>
+<p>Function đệ quy tạo chuyển động quay tròn</p>
+<pre><code class="language-javascript">// Tạo function tick đệ quy tạo animation
+const tick = () =&gt;
+{
+    const elapsedTime = clock.getElapsedTime()
+
+    // Update objects
+    moonGeometry.y = .5 * elapsedTime
+
+
+    // Render
+    renderer.render(scene, camera)
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick)
+}
+tick()
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>
